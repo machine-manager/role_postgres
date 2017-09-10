@@ -1,8 +1,13 @@
 defmodule RolePostgres do
 	def role(_tags \\ []) do
 		%{
-			desired_packages:  ["postgresql"],
-			ssh_allow_users:   ["postgres"],
+			desired_packages: [
+				"postgresql",
+				# For making backups
+				"bzip2",
+				"xz-utils",
+			],
+			ssh_allow_users: ["postgres"],
 			ferm_output_chain:
 				"""
 				outerface lo {
