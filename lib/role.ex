@@ -10,9 +10,12 @@ defmodule RolePostgres do
 			ssh_allow_users: ["postgres"],
 			ferm_output_chain:
 				"""
+				# User may not exist yet
+				@def $user_postgres = `(getent passwd postgres > /dev/null && echo postgres) || echo root`;
+
 				outerface lo {
 					# PostgreSQL does stats collection on a random UDP port
-					proto udp daddr 127.0.0.1 mod owner uid-owner postgres ACCEPT;
+					proto udp daddr 127.0.0.1 mod owner uid-owner $user_postgres ACCEPT;
 				}
 				"""
 		}
