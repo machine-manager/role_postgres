@@ -3,6 +3,7 @@ defmodule RolePostgres do
 		%{
 			desired_packages: [
 				"postgresql",
+				"pgtop",
 				# For making backups
 				"bzip2",
 				"xz-utils",
