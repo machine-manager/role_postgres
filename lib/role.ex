@@ -7,6 +7,7 @@ defmodule RolePostgres do
 				# For making backups
 				"bzip2",
 				"xz-utils",
+				"zstd",
 			],
 			ssh_allow_users: ["postgres"],
 			ferm_output_chain:
